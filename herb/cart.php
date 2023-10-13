@@ -1,10 +1,18 @@
 <?php
 session_start();
 include 'condb.php';
-// $id = $_GET["id"];
-// $sql = "SELECT * FROM product WHERE pro_id = $id";
+
+// $ids = $_GET["id"];
+// $sql = "SELECT * FROM product WHERE pro_id = '$ids'";
 // $result =mysqli_query($conn,$sql);
 // $row = mysqli_fetch_array($result);
+
+
+if (isset($_SESSION["intLine"])) {
+    // ทำสิ่งที่คุณต้องการเมื่อ intLine ถูกกำหนดค่า
+} else {
+    // ทำสิ่งที่คุณต้องการเมื่อ intLine ไม่ถูกกำหนดค่า
+}
 
 ?>
 
@@ -28,7 +36,7 @@ include 'condb.php';
 
 <body>
     <?php include 'header1.php'; ?>
-    <div class="container px-6"> 
+    <div class="container px-6">
         <form id="form" method="POST" action="insert_cart.php">
             <div class="row">
                 <div class="col-md-10">
@@ -45,17 +53,21 @@ include 'condb.php';
                             <th>จำนวน</th>
                             <th>ลบ</th>
                         </tr>
+
                         <?php
+                        // ตรวจสอบและกำหนดค่าเริ่มต้นสำหรับราคารวม
                         $total = 0;
                         $sumPrice = 0;
                         $m = 1;
+                        $sumtotal = 1;
+                        // วนลูปเพื่อแสดงรายการสินค้าในตะกร้า
                         for ($i = 0; $i <= (int)$_SESSION["intLine"]; $i++) {
                             if (($_SESSION["strProductID"][$i]) != "") {
-                                $sql = "select * from product where pro_id = '" . $_SESSION["strProductID"][$i] . "'";
-                                $result = mysqli_query($conn, $sql);
-                                $row_pro = mysqli_fetch_array($result);
+                                $sql1 = "select * from product where pro_id = '" . $_SESSION["strProductID"][$i] . "'";
+                                $result1 = mysqli_query($conn, $sql1);
+                                $row_pro = mysqli_fetch_array($result1);
 
-                                $_SESSION["price"] = $row_pro["price"];
+                                $_SESSION["price"] = $row_pro['price'];
                                 $total = $_SESSION["strQty"][$i];
                                 $sum = $total * $row_pro['price'];
                                 $sumPrice = $sumPrice + $sum;
@@ -67,9 +79,7 @@ include 'condb.php';
 
                                 <tr>
                                     <td><?= $m ?></td>
-                                    <td>
-                                        <img src="<?= $row_pro['image'] ?>" width="80" height="100">
-                                    </td>
+                                    <td><img src="<?= $row_pro['image'] ?>" width="80" height="100"></td>
                                     <td><?= $row_pro['pro_name'] ?></td>
                                     <td><?= $row_pro['price'] ?></td>
 
@@ -82,11 +92,7 @@ include 'condb.php';
                                     </td>
 
                                     <!-- ปุ่มลบ -->
-                                    <td><a href="pro_delete.php?Line=<?=$i?>"
-                                    class="btn btn-outline-primary">
-                                        ลบ
-                                            <!-- <image src="images/delete.png" width="40" height="40"> -->
-                                        </a></td>
+                                    <td><a href="pro_delete.php?Line=<?= $i ?>" class="btn btn-outline-primary"> ลบ</a></td>
                                 </tr>
                         <?php
                                 $m = $m + 1;
@@ -100,14 +106,22 @@ include 'condb.php';
                             <td>บาท</td>
                         </tr>
                     </table>
+                    <br>
+                    
+                   
+
                     <div style="text-align:right;">
                         <a href="sh_product.php">
                             <button type="button" class="btn btn-outline-secondary">เลือกสินค้า</button></a>
                         <a href="">
                             <button type="submit" class="btn btn-outline-primary">ยืนยันการสั่งซื้อ</button></a>
-
+                        <?php
+                         mysqli_close($conn); 
+                         ?>
                     </div>
                 </div>
+
+
                 <br>
                 <div class="row">
                     <div class="col-md-6">

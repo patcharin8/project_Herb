@@ -14,7 +14,7 @@
     <link href="bootstrsp/css/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -27,6 +27,7 @@
             $sql = "SELECT * FROM product ORDER BY pro_id";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_array($result)) {
+                $price = $row['price'];
             ?>
                 <div class="col-sm-3">
                     <div class="text-center">
@@ -34,7 +35,7 @@
                         ID: <?= $row['pro_id'] ?><br>
                         <h5 class="text-success"><?= $row['pro_name'] ?></h5>
                         ราคา <?= $row['price'] ?> บาท <br>
-                        <a class="btn btn-outline-primary" href="sh_product_detail.php?action=show&id=<?=$row['pro_id']?>">รายละเอียด </a>
+                        <a class="btn btn-outline-primary" href="sh_product_detail.php?action=show&id=<?= $row['pro_id'] ?>">รายละเอียด </a>
                     </div>
                 </div>
                 <br>

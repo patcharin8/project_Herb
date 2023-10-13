@@ -51,12 +51,13 @@ $total_price = $rs['total_price'];
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <?php
                             $sql1 = "SELECT * FROM order_detail ,product  WHERE order_detail.pro_id=product.pro_id AND orderID= '$id'";
                             $result1 = mysqli_query($conn, $sql1);
                             $total_price = 0;
                             while ($row = mysqli_fetch_array($result1)) {
-                                $total_price += $row['total'];
+                                $total_price += $row['total']; //total = ราคารวม total_price = ราคารวมสุทธิ
                             ?>
                                 <tr>
                                     <td><?= $row['pro_id'] ?></td>
@@ -83,12 +84,12 @@ $total_price = $rs['total_price'];
                 </div>
             </div>
         </div>
-        กรุณาโอนเงินภายใน 7 วันหลังสั่งซื้อสินค้า <br>
+        กรุณาโอนเงินภายใน 2 วันหลังสั่งซื้อสินค้า <br>
         โออนเงินผ่านธนาคาร กรุงไทย<br>
         ชื่อบัญชี นางสาว พัชรินทร์ ศิริหงษ์ <br>
         เลขที่บัญชี 4180732351<br>
-<img src="images/QR.png" width="250px" />
-<a href="payment_mem.php">แจ้งชำระเงิน</a>
+<img src="images/QRcode.jpg" width="250px" />
+<a href="payment.php">แจ้งชำระเงิน</a>
     </div>
     <center>
     <a href="sh_product.php" class="btn btn-success" >กลับ</a>

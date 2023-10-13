@@ -13,12 +13,13 @@ $idRow = mysqli_fetch_assoc($ProductIdResult);
 $lastorderID = $idRow['lastorderID'];
 $Pro_id = $lastorderID + 1;
 
+
 $sql = "INSERT INTO table_order (orderID,cus_name,address,telephone,total_price,order_status)
 values('$Pro_id','$cusname','$cusaddress','$custel','" . $_SESSION["sum_price"] . "','1')";
 $result2=mysqli_query($conn, $sql);
 
-// $orderID = mysqli_insert_id($conn);
-// $_SESSION["order_id"] = $orderID;
+$orderID = mysqli_insert_id($conn);
+$_SESSION["order_id"] = $orderID;
 
 for ($i = 0; $i <= (int)$_SESSION["intLine"]; $i++) {
     if (($_SESSION["strProductID"][$i]) != "") {
@@ -32,7 +33,6 @@ for ($i = 0; $i <= (int)$_SESSION["intLine"]; $i++) {
         $sql2 = "insert into order_detail(orderID, pro_id, orderPrice, orderQty, total)
         values('$Pro_id','" . $_SESSION["strProductID"][$i] . "','$price','" . $_SESSION["strQty"][$i] . "','$total')";
         $result = mysqli_query($conn, $sql2); // กำหนดค่าให้กับ $result
-
         $id = $Pro_id;
 
         if ($result) {

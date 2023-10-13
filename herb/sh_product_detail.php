@@ -1,4 +1,6 @@
-<?php include 'condb.php'; ?>
+<?php include 'condb.php'; 
+session_start();
+?>
 <DOCTYPE html>
     <html lang="en">
 
@@ -24,7 +26,7 @@
             <div class="row">
             <?php
                 if (isset($_GET['action']) && $_GET['action'] == 'show') {
-                    $id = $_GET['id'] ;$_SESSION["strProductID"]=$id;
+                    $id = $_GET['id'] ;
 
                     $sql = "SELECT p.pro_id, p.pro_name, p.detail, p.price, p.amount, p.image, t.type_name
                      FROM product AS p
@@ -48,7 +50,20 @@
                     ประเภทสินค้า: <?= $row['type_name'] ?><br>
                     รายละเอียด: <?= $row['detail'] ?><br>
                     ราคา <?= $row['price'] ?> บาท <br>
+                    <?php 
+                       if (isset($_SESSION['isLogin'])) {
+                            ?>
                     <a class="btn btn-outline-primary mt-3" href="order.php?id=<?=$row['pro_id']?>"> ตะกร้า</a>
+                    <?php
+                        }
+                        ?>
+                         <?php 
+                       if (!isset($_SESSION['isLogin'])) {
+                            ?>
+                   <a class="btn btn-outline-primary mt-3" href="login.php"> Login</a>
+                    <?php
+                        }
+                        ?>
                 </div>
             </div>
             <?php

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <head>
@@ -26,6 +27,7 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -63,20 +65,54 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="sh_product.php">สินค้า</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">เเจ้งชำระเงิน</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="payment.php">เเจ้งชำระเงิน</a></li>
+                            
+                            </ul>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ประเภทสินค้า</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="pro_water.php">ชนิดน้ำ</a></li>
                                 <li><a class="dropdown-item" href="pro_capsule.php">ชนิดแคปซูล</a></li>
                                 <li><a class="dropdown-item" href="pro_flour.php">ชนิดผง</a></li>
-                              </ul>   
-                                <li class="nav-item"><a class="nav-link" href="admin/login_ad.php">admin</a></li>
-                                <li class="nav-item"><a class="nav-link" href="payment.php">เเจ้งชำระเงิน</a></li>
-
+                            </ul>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="login.php">login</a></li>
+                                <li><a class="dropdown-item" href="logout.php">logout</a></li>
+                                <li><a class="dropdown-item" href="register.php">register</a></li>
+                            </ul>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin/login_ad.php">admin</a>
                            
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="login.php">login</a></li>
+                        <?php 
+                       if (isset($_SESSION['isLogin'])) {
+                            ?>
+                            <li class="nav-item">
+                        <a href="show_profile.php?>" class="nav-link"> ยินดีต้อนรับ: <?=$_SESSION["cus_firstname"] ?> <?=$_SESSION["cus_lastname"]?></a>
+                        </li>
+                        
+                        <?php
+                        }
+                        ?>
+                        
+                        </li>
+
                     </ul>
+                    
+<form class="d-flex" method="POST" action="sh_product_detail.php">
+    <input class="form-control me-2" type="text" name="keyword" placeholder="search" aria-label="search">
+    <button class="btn btn-primary" type="submit" >ค้นหา</button>
+</form>
+&nbsp;
+
 
                 </div>
             </div>

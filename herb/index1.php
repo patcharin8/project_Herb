@@ -1,7 +1,6 @@
 <?php 
 include 'condb.php'; 
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +22,7 @@ session_start();
 </head>
 
 <body>
-    <?php include 'header1.php'; ?>
+    <?php include 'header1.php'; ?> 
     <div class="container">
         <br><br>
         <div class="row">

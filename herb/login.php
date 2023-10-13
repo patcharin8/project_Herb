@@ -1,3 +1,5 @@
+<?php include 'condb.php';
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +24,20 @@
                 </div> 
 
                 <form method="POST" action="login_check.php">
-
-                    <input type="text" name="username" class="form-control" required placeholder="username"><br>
-                    <input type="password" name="password" class="form-control" required placeholder="password">
+                    <input type="text" name="username" class="form-control"  placeholder="username" required><br>
+                    <input type="password" name="password" class="form-control"  placeholder="password" required>
                     <br>
+                    <?php
+                    if(!isset($_SESSION["Error"])){
+                        session_destroy();
+                    }else{
+                        echo "<div class='text-danger'>";
+                        echo $_SESSION["Error"];
+                        echo "</div>";
+                    }
+                    $_SESSION['Error']="";
+                    ?>
+
                     <input type="submit" name="submit" class="btn btn-primary" value="login">
 
                     <br><br>

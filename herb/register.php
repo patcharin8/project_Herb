@@ -1,3 +1,9 @@
+<?php
+include 'condb.php';
+session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,23 +26,38 @@
                 <div class="alert alert-info" role="alert">
                     <h4>สมัครสมาชิก</h4>
                 </div>
-                <form method="POST" action="insert_register.php">
+                <form method="POST" action="insert_register.php" enctype="multipart/form-data">
+                    <label>รูปภาพโปรไฟล์:</label><br>
+                    <input type="file" name="fileToUpload" id="fileToUpload" required><br>
                     ชื่อ <input type="text" name="firstname" class="form-control" required>
                     นามสกุล <input type="text" name="lastname" class="form-control" required>
                     เบอร์โทรศัพท์ <input type="text" name="telephone" maxlength="10" class="form-control" required>
                     Username <input type="text" name="username" class="form-control" required>
                     Password <input type="password" name="password" class="form-control" required>
                     <br>
-           
-            <input type="submit" name="submit" class="btn btn-primary" value="บันทึก">
-            <input type="reset" name="cancel" class="btn btn-primary" value="ยกเลิก">
-            <br><br>
-            <a href="login.php"> Login </a>
-            </form>
+
+                    <br>
+
+                    <button type="submit" name="save" class="btn btn-primary" value="บันทึก">บันทึก</button>
+                    <a href="index.php" type="reset" name="cancel" class="btn btn-primary" value="ยกเลิก">ยกเลิก</a>
+                    
+                    
+                    <br><br>
+                    <a href="login.php"> Login </a>
+                </form>
+            </div>
+            
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+
 </body>
 
-</html>
+</html>        
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/chart-area-demo.js"></script>
+<script src="assets/demo/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script src="js/datatables-simple-demo.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>

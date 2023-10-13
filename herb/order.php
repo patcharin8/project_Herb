@@ -3,12 +3,17 @@ ob_start();
 session_start();
 include 'condb.php';
 
+// $sql = "SELECT * FROM order_detail ";
+// $result_order =mysqli_query($conn,$sql);
+// $row_order = mysqli_fetch_all($result_order);
+// $_SESSION["strProductID"] = $row_order;
+
 if(!isset($_SESSION["intLine"]))    //เช็คว่าแถวเป็นค่าว่างมั๊ย ถ้าว่างให้ทำงานใน {}
 {
 	 $_SESSION["intLine"] = 0;
 	 $_SESSION["strProductID"][0] = $_GET["id"];   //รหัสสินค้า
 	 $_SESSION["strQty"][0] = 1;                   //จำนวนสินค้า
-	 header("location:cart.php");
+	  header("location:cart.php");
 }
 else
 {
